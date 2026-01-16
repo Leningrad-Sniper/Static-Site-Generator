@@ -1,5 +1,6 @@
 # Static-Site-Generator
 
+```text
 my-ssg/
 ├── src/           # Your SSG code
 ├── templates/     # HTML templates
