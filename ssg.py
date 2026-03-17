@@ -7,10 +7,10 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add src directory to path
-sys.path.insert(0, str(Path(__file__).parent / "src"))
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent))
 
-from builder import Builder
+from src.builder import Builder
 
 
 def main():
@@ -39,16 +39,26 @@ def main():
         default="output",
         help="Path to output directory (default: output)"
     )
+    build_parser.add_argument(
+        "--static",
+        default="static",
+        help="Path to static assets directory (default: static)"
+    )
     
     args = parser.parse_args()
     
     if args.command == "build":
-        builder = Builder(
-            content_dir=args.content,
-            templates_dir=args.templates,
-            output_dir=args.output
-        )
-        builder.build()
+        try:
+            builder = Builder(
+                content_dir=args.content,
+                templates_dir=args.templates,
+                output_dir=args.output,
+                static_dir=args.static,
+            )
+            builder.build()
+        except (FileNotFoundError, ValueError) as exc:
+            print(f"Build failed: {exc}", file=sys.stderr)
+            sys.exit(1)
     else:
         parser.print_help()
         sys.exit(1)

@@ -1,3 +1,8 @@
+---
+title: Home
+order: 1
+---
+
 # Welcome to My Site
 
 This is a sample markdown file for the Static Site Generator.

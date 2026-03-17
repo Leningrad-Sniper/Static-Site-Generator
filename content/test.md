@@ -1,3 +1,8 @@
+---
+title: Demo Page
+order: 4
+---
+
 # Test Page
 
 This is a test markdown file to verify the conversion to HTML works correctly.
